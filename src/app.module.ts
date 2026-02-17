@@ -23,10 +23,12 @@ import { MasterDataModule } from './modules/master-data/master-data.module';
       validationSchema,
       envFilePath: `.env.${process.env.NODE_ENV || 'development'}`,
     }),
-    ThrottlerModule.forRoot([{
-      ttl: 60000,
-      limit: 10,
-    }]),
+    ThrottlerModule.forRoot([
+      {
+        ttl: 60000,
+        limit: 10,
+      },
+    ]),
     DatabaseModule,
     UsersModule,
     AuthModule,
@@ -34,7 +36,7 @@ import { MasterDataModule } from './modules/master-data/master-data.module';
     MaintenanceModule,
     AppVersionModule,
     SeederModule,
-    MasterDataModule
+    MasterDataModule,
   ],
   providers: [
     {
@@ -47,4 +49,4 @@ import { MasterDataModule } from './modules/master-data/master-data.module';
     },
   ],
 })
-export class AppModule { }
+export class AppModule {}

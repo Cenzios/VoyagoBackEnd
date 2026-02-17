@@ -8,7 +8,6 @@ import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 import { LoggingInterceptor } from './common/interceptors/logging.interceptor';
 import { logger } from './logger';
 
-
 import helmet from 'helmet';
 import compression from 'compression';
 
@@ -50,15 +49,12 @@ async function bootstrap() {
   );
 
   // Global filters
-  app.useGlobalFilters(
-    new AllExceptionsFilter(),
-    new HttpExceptionFilter(),
-  );
+  app.useGlobalFilters(new AllExceptionsFilter(), new HttpExceptionFilter());
 
   // Global interceptors
   app.useGlobalInterceptors(
     new LoggingInterceptor(),
-    new TransformInterceptor()
+    new TransformInterceptor(),
   );
 
   // Logger
@@ -72,8 +68,12 @@ async function bootstrap() {
 
   await app.listen(port);
 
-  nestLogger.log(`🚀 Application is running on: http://localhost:${port}/${apiPrefix}`);
-  nestLogger.log(`📚 Health check available at: http://localhost:${port}/${apiPrefix}/health`);
+  nestLogger.log(
+    `🚀 Application is running on: http://localhost:${port}/${apiPrefix}`,
+  );
+  nestLogger.log(
+    `📚 Health check available at: http://localhost:${port}/${apiPrefix}/health`,
+  );
 }
 
 bootstrap();
