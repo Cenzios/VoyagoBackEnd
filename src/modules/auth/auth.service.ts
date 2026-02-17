@@ -11,6 +11,7 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
+  //Login user
   async login(loginDto: LoginDto) {
     const user = await this.usersService.findByEmail(loginDto.email);
 
@@ -52,6 +53,7 @@ export class AuthService {
     };
   }
 
+  //Validate user credentials
   async validateUser(email: string, password: string): Promise<any> {
     const user = await this.usersService.findByEmail(email);
 
