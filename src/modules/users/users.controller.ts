@@ -50,4 +50,15 @@ export class UsersController {
       data,
     };
   }
+
+  //Delete user
+  @Post(':id/delete')
+  @UseGuards(JwtAuthGuard)
+  async delete(@Param('id') id: string) {
+    const data = await this.usersService.delete(id);
+    return {
+      message: 'User deleted successfully',
+      data,
+    };
+  }
 }

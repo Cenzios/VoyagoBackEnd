@@ -79,4 +79,13 @@ export class UsersService {
     Object.assign(user, updateUserDto);
     return this.userRepository.save(user);
   }
+
+  //Delete user
+  async delete(id: string): Promise<void> {
+    const user = await this.userRepository.findOne({ where: { id } });
+    if (!user) {
+      throw new NotFoundException(`User with ID ${id} not found`);
+    }
+    await this.userRepository.remove(user);
+  }
 }
